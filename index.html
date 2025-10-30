@@ -13,22 +13,25 @@
             <h1>YouQuiz</h1>
             <p>Tester vous connaissances</p>
             <button class="start-btn" id="startBnt">Commencer</button>
-        </div>
-        
-    </section> 
+        </div> 
+    </section>  
     <!-- section questions -->
-    <section  class="Card-questions">
+    <section  class="Card-questions" id="cardQuiz">
         <header class="logo">YouQuiz</header>
         <div class="container-card-questions">
             <div class="head-card">
-                <p>Question: <span>1</span>/5</p>
-                <a href="#" id="quiter">Quiter</a>
+                <p>Question: <span id="questionNum">1</span>/5</p>
+                <a href="" id="quiter">Quiter</a>
             </div>
             <h2 class="text-question" id="question">Question 1</h2>
-            <button class="btn-repose" id="reponse">Question 2</button><button class="btn-repose">Option 2</button><button class="btn-repose">Option 3</button>
+            <div class="bnts-reponses" id="btnReponses">
+                <button class="btn" id="reponse">Option 1</button>
+                <button class="btn" id="reponse">Option 2</button>
+                <button class="btn" id="reponse">Option 3</button>
+            </div>
             <div class="Submit-btns">
-                <button class="precedent-btn">Précedent</button>
-                <button class="suivant-btn" id="suivant-btn">Suivant</button>
+                <button class="precedent-btn" id="precedentBtn">Précedent</button>
+                <button class="suivant-btn" id="suivantBtn">Suivant</button>
             </div>
         </div>
     </section>

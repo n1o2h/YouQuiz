@@ -5,7 +5,7 @@ const ListQuestions = [
         reponces: [
             {texte: "Tim Berners-Lee", estCorrect : true},
             {texte: "Brendan Eich", estCorrect : false},
-            {texte: "Bill Gates", estCorrect : true} 
+            {texte: "Bill Gates", estCorrect : false} 
         ]
     },
     {
@@ -65,20 +65,63 @@ const ListQuestions = [
         ]
     }
 ];
+// console.log(ListQuestions[0].question)
 
-// 
 const bntDebut = document.getElementById("startBnt");
-console.log(bntDebut)
-
 const questionElm = document.getElementById("question");
-const reponseElem = document.getElementById("reponse");
-const btnSuivant = document.getElementById("suivant-btn");
-let heroStart = document.getElementById("hero-start");
+const btnReponses = document.querySelectorAll(".btn");
+const btnSuivant = document.getElementById("suivantBtn");
+const reponse = document.getElementById("reponse");
+
 
 let questionIndex =0;
 let score =  0;
 
-// bntDebut.addEventListener("click", commencerQuiz());
-// function  commencerQuiz(){
-//     heroStart.style.display= "none";
-// }
+//  debut passser de commencer au cart de quiz
+const cardQuiz = document.getElementById("cardQuiz");
+const quiter = document.getElementById("quiter");
+quiter.addEventListener("click", function (){
+    cardQuiz.style.display="none";
+    heroStart.style.display= "flex";
+});
+
+bntDebut.addEventListener("click", function (){
+    heroStart.style.display= "none";
+    cardQuiz.style.display="flex";
+});
+//  fin passser de commencer au cart de quiz
+
+function ajouterQuestion(){
+    const questionCourant = ListQuestions[questionIndex];
+    let questionNum = document.getElementById("questionNum");
+    questionNum.innerText = questionIndex + 1;
+    questionCourant.reponces.forEach((reponce,index) => {
+        questionElm.innerText = questionCourant.question
+        btnReponses[index].innerText = reponce.texte;
+        btnReponses[index].addEventListener("click", function  selectReponce(){
+            if(reponce.estCorrect){
+                // reponce.classList.add("correct");
+                btnReponses[index].style.disabled = true;
+            }
+            else{
+                // reponce.classList.add("incorrect");
+                btnReponses[index].style.disabled = false;
+
+            }
+    });
+});
+}
+
+btnSuivant.addEventListener("click", function(){
+    questionIndex++;
+    const precedentBtn = document.getElementById("precedentBtn");
+    precedentBtn.style.visibility ="visible";
+    ajouterQuestion();
+});
+ajouterQuestion();
+function selectReponce(){
+    // console.log(questionCourant.reponces)
+}
+selectReponce()
+
+

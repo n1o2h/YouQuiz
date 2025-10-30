@@ -24,7 +24,6 @@ body{
 .hero-start, .Card-questions{
     width: 100%;
     height: 100vh;
-
     background: linear-gradient(to bottom, #cde4cd 60%,#F4FBF7  100%);
     display: flex;
     flex-direction: column;
@@ -62,32 +61,41 @@ body{
     color: var(--text-color);
     background: var(--bg1-bnt-color);
     border: none;
+    cursor: pointer;
     font-family: "Pacifico", cursive;
 }
 
 /* card question */
 .Card-questions{
+    width: 100%;
+    height:750px;
+    background: linear-gradient(to bottom, #cde4cd 60%,#F4FBF7  100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    display: none;
+}
+.Card-questions{
+    /* height: 100vh; */
     font-family: "Kufam", sans-serif;
-    position: relative;
+    display: flex;
+    align-items: center;
 }
 .Card-questions .logo{
+
     font-family: "Pacifico", cursive;
-    font-size: 3em;
+    font-size: 2em;
     align-self: flex-start;
     justify-self: start;
     font-weight: 900;
     line-height: 1.4em;
     padding: 20px;
     color: var(--primary-color);
-    margin-bottom: 30px;
-    position: absolute;
-    top: 30px;
-    left: 50px;
 }
 .container-card-questions{
     font-family: "Kufam", sans-serif;
-    width: 80%;
-    height: 70%;
+    width: 70%;
     background-color:var(--bg5-bnt-color);
     border-radius:16px;
     filter: drop-shadow(0 0  16px 
@@ -95,14 +103,11 @@ body{
     padding: 30px 50px;
     display: flex;
     flex-direction: column;
-    /* justify-content: space-around; */
-    gap: 80px;
-    /* align-items: center; */
+    gap: 30px;
 }
 .container-card-questions .head-card{
     display: flex;
     justify-content: space-between;
-    /* align-items: center; */
 }
 .container-card-questions .head-card p{
     font-weight: 400;
@@ -118,14 +123,18 @@ body{
     text-decoration: none;
 }
 .container-card-questions .text-question{
-    font-size: 3em;
+    font-size: 2em;
     font-weight: 900;
     line-height: 2em;
     padding: 10px;
     text-align: center
 }
-.container-card-questions .btn-repose{
-    /* width: 50%; */
+.container-card-questions .bnts-reponses{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.container-card-questions .btn{
     font-size: 1.5em;
     font-weight: 600;
     line-height: 1em;
@@ -137,12 +146,18 @@ body{
     #00000039);
     border: none;
     cursor: pointer;
+    transition:  all 0.3s;
+}
+.btn:hover{
+    background: var(--third-color);
+    color:  var(--text-color);
+
 }
 .container-card-questions .Submit-btns{
     display: flex;
-    gap: 40px;
-    /* justify-content: space-between; */
+    justify-content: space-around;
 }
+
 .container-card-questions .Submit-btns button{
     font-size: 1.5em;
     font-weight: 800;
@@ -155,6 +170,14 @@ body{
     width: 40%;
     cursor: pointer;
 }
+
 .precedent-btn{
     visibility: hidden;
+}
+
+.correct{
+    background: var(--bg1-bnt-color);
+}
+.incorrect{
+    background: var(--bg4-bnt-color);
 }
