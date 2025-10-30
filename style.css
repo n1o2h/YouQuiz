@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Kufam:ital,wght@0,400..900;1,400..900&family=Pacifico&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root{
+    --primary-color: #0A0606;
+    --text-color: #FFFFFF;
+    --bg1-bnt-color: #3CA33C;
+    --bg2-bnt-color: #84E7B6;
+    --bg3-bnt-color: #9BB7DA;
+    --bg4-bnt-color: #D4627A;
+    --bg5-bnt-color: #9BB7DA;
+    --bg5-bnt-color: #F4FBF7;
+
+    --secondry-color: #D5027C;
+    --third-color: #0F469A;
+}
+body{
+    font-family: "Pacifico", cursive;
+}
+
+.hero-start, .Card-questions{
+    width: 100%;
+    height: 100vh;
+
+    background: linear-gradient(to bottom, #cde4cd 60%,#F4FBF7  100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.start-title{
+    width: 100%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    /* justify-content: space-evenly; */
+}
+.start-title h1{
+    font-size: 5em;
+    font-weight: 800;
+    line-height: 1.4em;
+    padding: 20px;
+}
+.start-title p{
+    font-size: 3em;
+    font-weight: 500;
+    line-height: 1.4em;
+    padding: 20px;
+}
+.start-title .start-btn {
+    width: 50%;
+    font-size: 3em;
+    font-weight: 500;
+    line-height: 1.4em;
+    padding: 20px  30px;
+    border-radius: 8px;
+    color: var(--text-color);
+    background: var(--bg1-bnt-color);
+    border: none;
+    font-family: "Pacifico", cursive;
+}
+
+/* card question */
+.Card-questions{
+    font-family: "Kufam", sans-serif;
+    position: relative;
+}
+.Card-questions .logo{
+    font-family: "Pacifico", cursive;
+    font-size: 3em;
+    align-self: flex-start;
+    justify-self: start;
+    font-weight: 900;
+    line-height: 1.4em;
+    padding: 20px;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    position: absolute;
+    top: 30px;
+    left: 50px;
+}
+.container-card-questions{
+    font-family: "Kufam", sans-serif;
+    width: 80%;
+    height: 70%;
+    background-color:var(--bg5-bnt-color);
+    border-radius:16px;
+    filter: drop-shadow(0 0  16px 
+    #0000004a);
+    padding: 30px 50px;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-around; */
+    gap: 80px;
+    /* align-items: center; */
+}
+.container-card-questions .head-card{
+    display: flex;
+    justify-content: space-between;
+    /* align-items: center; */
+}
+.container-card-questions .head-card p{
+    font-weight: 400;
+    font-size: 1.5em;
+    line-height: 1.5em;
+    color: var(--third-color);
+}
+.container-card-questions .head-card a{
+    font-weight: 700;
+    font-size: 1.5em;
+    line-height: 1.5em;
+    color: var(--secondry-color);
+    text-decoration: none;
+}
+.container-card-questions .text-question{
+    font-size: 3em;
+    font-weight: 900;
+    line-height: 2em;
+    padding: 10px;
+    text-align: center
+}
+.container-card-questions .btn-repose{
+    /* width: 50%; */
+    font-size: 1.5em;
+    font-weight: 600;
+    line-height: 1em;
+    padding: 20px  30px;
+    border-radius: 8px;
+    color: var(--primary-color);
+    background: var(--text-color);
+    filter: drop-shadow(0 0  16px 
+    #00000039);
+    border: none;
+    cursor: pointer;
+}
+.container-card-questions .Submit-btns{
+    display: flex;
+    gap: 40px;
+    /* justify-content: space-between; */
+}
+.container-card-questions .Submit-btns button{
+    font-size: 1.5em;
+    font-weight: 800;
+    line-height: 1em;
+    padding: 20px 40px;
+    border-radius: 8px;
+    color: var(--primary-color);
+    background: var(--bg2-bnt-color);
+    border: none;
+    width: 40%;
+    cursor: pointer;
+}
+.precedent-btn{
+    visibility: hidden;
+}
