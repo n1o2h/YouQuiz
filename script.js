@@ -57,7 +57,7 @@ const ListQuestions = [
                 texte: "Un moteur JavaScript de Microsoft", estCorrect : false
             },
             {
-                texte: "La sixième édition d’ECMAScript, sortie en 2015", estCorrect : true
+                texte: "La sixième édition d'ECMAScript, sortie en 2015", estCorrect : true
             },
             {
                 texte: "Un outil de débogage", estCorrect : true
@@ -80,12 +80,12 @@ let score =  0;
 //  debut passser de commencer au cart de quiz
 const cardQuiz = document.getElementById("cardQuiz");
 const quiter = document.getElementById("quiter");
-quiter.addEventListener("click", function (){
+quiter.addEventListener("click", function sortQuiz(){
     cardQuiz.style.display="none";
     heroStart.style.display= "flex";
 });
 
-bntDebut.addEventListener("click", function (){
+bntDebut.addEventListener("click", function commencerQuiz(){
     heroStart.style.display= "none";
     cardQuiz.style.display="flex";
 });
@@ -94,34 +94,51 @@ bntDebut.addEventListener("click", function (){
 function ajouterQuestion(){
     const questionCourant = ListQuestions[questionIndex];
     let questionNum = document.getElementById("questionNum");
-    questionNum.innerText = questionIndex + 1;
+    questionNum.innerText = questionIndex+1;
     questionCourant.reponces.forEach((reponce,index) => {
         questionElm.innerText = questionCourant.question
         btnReponses[index].innerText = reponce.texte;
         btnReponses[index].addEventListener("click", function  selectReponce(){
             if(reponce.estCorrect){
+                // reponse.style.background="green";
                 // reponce.classList.add("correct");
-                btnReponses[index].style.disabled = true;
+                // btnReponses[index].style.disabled = true;
             }
             else{
+                // reponse.style.background="red";
                 // reponce.classList.add("incorrect");
-                btnReponses[index].style.disabled = false;
-
+                // btnReponses[index].style.disabled = false;
             }
     });
 });
 }
 
 btnSuivant.addEventListener("click", function(){
-    questionIndex++;
-    const precedentBtn = document.getElementById("precedentBtn");
-    precedentBtn.style.visibility ="visible";
-    ajouterQuestion();
+    console.log(ListQuestions.length);
+    if(questionIndex+1 < ListQuestions.length){
+        questionIndex++;
+        const precedentBtn = document.getElementById("precedentBtn");
+        precedentBtn.style.visibility ="visible";
+        ajouterQuestion();
+    }
+    else{
+        btnSuivant.innerText="Terminer";
+    }
 });
+precedentBtn.addEventListener("click", function(){
+    // console.log(ListQuestions.length);
+    if(questionIndex+1 < ListQuestions.length){
+        questionIndex--;
+        // const precedentBtn = document.getElementById("precedentBtn");
+        // precedentBtn.style.visibility ="visible";
+        ajouterQuestion();
+    }
+});
+
 ajouterQuestion();
 function selectReponce(){
     // console.log(questionCourant.reponces)
 }
-selectReponce()
+selectReponce();
 
 
