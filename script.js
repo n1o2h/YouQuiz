@@ -6,73 +6,52 @@ const ListQuestions = [
             {texte: "Tim Berners-Lee", estCorrect : true},
             {texte: "Brendan Eich", estCorrect : false},
             {texte: "Bill Gates", estCorrect : false} 
-        ]
+        ],
+        selectedReponce: null,
     },
     {
         question: "Que représente ECMAScript ?",
         reponces: [
-            {
-                texte: "Un navigateur web", estCorrect : false
-            },
-            {
-                texte: "Un langage complètement différent de JavaScript", estCorrect : false
-            },
-            {
-                texte: "Une spécification standard sur laquelle JavaScript est basé", estCorrect : true
-            }
-        ]
+            {texte: "Un navigateur web", estCorrect : false},
+            {texte: "Un langage complètement différent de JavaScript", estCorrect : false},
+            {texte: "Une spécification standard sur laquelle JavaScript est basé", estCorrect : true}
+        ],
+        selectedReponce: null,
     },
     {
         question: "Quelle organisation gère la norme ECMAScript ?",
         reponces: [
-            {
-                texte: "W3C", estCorrect : false
-            },
-            {
-                texte: "Mozilla Foundation", estCorrect : false
-            },
-            {
-                texte: "ECMA International", estCorrect : true
-            }
-        ]
+            {texte: "W3C", estCorrect : false},
+            {texte: "Mozilla Foundation", estCorrect : false},
+            {texte: "ECMA International", estCorrect : true}
+        ],
+        selectedReponce: null,
     },
     {
         question: "Quel comité décide des nouveautés du langage JavaScript ?",
         reponces: [
-            {
-                texte: "TC39", estCorrect : true
-            },
-            {
-                texte: "ECMA39", estCorrect : false
-            },
-            {
-                texte: "TC30", estCorrect : false
-            }
-        ]
+            {texte: "TC39", estCorrect : true},
+            {texte: "ECMA39", estCorrect : false},
+            {texte: "TC30", estCorrect : false}
+        ],
+        selectedReponce: null,
     },
     {
         question: "Que signifie « ES6 » ?",
         reponces: [
-            {
-                texte: "Un moteur JavaScript de Microsoft", estCorrect : false
-            },
-            {
-                texte: "La sixième édition d'ECMAScript, sortie en 2015", estCorrect : true
-            },
-            {
-                texte: "Un outil de débogage", estCorrect : true
-            }
-        ]
+            {texte: "Un moteur JavaScript de Microsoft", estCorrect : false},
+            {texte: "La sixième édition d'ECMAScript, sortie en 2015", estCorrect : true},
+            {texte: "Un outil de débogage", estCorrect : true}
+        ],
+        selectedReponce: null,
     }
 ];
-// console.log(ListQuestions[0].question)
 
 const bntDebut = document.getElementById("startBnt");
 const questionElm = document.getElementById("question");
 const btnReponses = document.querySelectorAll(".btn");
 const btnSuivant = document.getElementById("suivantBtn");
 const reponse = document.getElementById("reponse");
-
 
 let questionIndex =0;
 let score =  0;
@@ -96,25 +75,16 @@ function ajouterQuestion(){
     let questionNum = document.getElementById("questionNum");
     questionNum.innerText = questionIndex+1;
     questionCourant.reponces.forEach((reponce,index) => {
-        questionElm.innerText = questionCourant.question
+        // console.log(btnReponses[index].dataset.indexR);
+        // console.log(btnReponses[index].dataset.indexQ);
+        questionElm.innerText = questionCourant.question;
         btnReponses[index].innerText = reponce.texte;
-        btnReponses[index].addEventListener("click", function  selectReponce(){
-            if(reponce.estCorrect){
-                // reponse.style.background="green";
-                // reponce.classList.add("correct");
-                // btnReponses[index].style.disabled = true;
-            }
-            else{
-                // reponse.style.background="red";
-                // reponce.classList.add("incorrect");
-                // btnReponses[index].style.disabled = false;
-            }
+        btnReponses[index].addEventListener("click", selectedReponce);
     });
-});
-}
 
+}
 btnSuivant.addEventListener("click", function(){
-    console.log(ListQuestions.length);
+    // console.log(ListQuestions.length);
     if(questionIndex+1 < ListQuestions.length){
         questionIndex++;
         const precedentBtn = document.getElementById("precedentBtn");
@@ -125,20 +95,15 @@ btnSuivant.addEventListener("click", function(){
         btnSuivant.innerText="Terminer";
     }
 });
+
+
 precedentBtn.addEventListener("click", function(){
-    // console.log(ListQuestions.length);
-    if(questionIndex+1 < ListQuestions.length){
+    if(questionIndex < ListQuestions.length){
         questionIndex--;
-        // const precedentBtn = document.getElementById("precedentBtn");
-        // precedentBtn.style.visibility ="visible";
         ajouterQuestion();
     }
 });
-
 ajouterQuestion();
-function selectReponce(){
-    // console.log(questionCourant.reponces)
-}
-selectReponce();
+
 
 
