@@ -74,13 +74,13 @@ body{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    display: none;
 }
 .Card-questions{
     /* height: 100vh; */
     font-family: "Kufam", sans-serif;
     display: flex;
     align-items: center;
+    display: none;
 }
 .Card-questions .logo{
 
@@ -148,10 +148,12 @@ body{
     cursor: pointer;
     transition:  all 0.3s;
 }
-.btn:hover{
+.btn:hover:not([disabled]){
     background: var(--third-color);
     color:  var(--text-color);
-
+}
+.btn:disabled{
+    cursor: no-drop;
 }
 .container-card-questions .Submit-btns{
     display: flex;
@@ -175,9 +177,11 @@ body{
     visibility: hidden;
 }
 
-.correct{
-    background: var(--bg1-bnt-color);
-}
-.incorrect{
-    background: var(--bg4-bnt-color);
-}
+    .correct {
+    background-color: #4caf50 !important; /* ✅ green */
+    color: white !important;
+    }
+    .incorrect {
+    background-color: #f44336 !important; /* ❌ red */
+    color: white !important;
+    }

@@ -41,7 +41,7 @@ const ListQuestions = [
         reponces: [
             {texte: "Un moteur JavaScript de Microsoft", estCorrect : false},
             {texte: "La sixième édition d'ECMAScript, sortie en 2015", estCorrect : true},
-            {texte: "Un outil de débogage", estCorrect : true}
+            {texte: "Un outil de débogage", estCorrect : false}
         ],
         selectedReponce: null,
     }
@@ -51,59 +51,129 @@ const bntDebut = document.getElementById("startBnt");
 const questionElm = document.getElementById("question");
 const btnReponses = document.querySelectorAll(".btn");
 const btnSuivant = document.getElementById("suivantBtn");
-const reponse = document.getElementById("reponse");
+// const reponse = document.getElementById("reponse");
+const precedentBtn = document.getElementById("precedentBtn");
+const cardQuiz = document.getElementById("cardQuiz");
+const quiter = document.getElementById("quiter");
+let questionNum = document.getElementById("questionNum");
 
 let questionIndex =0;
 let score =  0;
 
 //  debut passser de commencer au cart de quiz
-const cardQuiz = document.getElementById("cardQuiz");
-const quiter = document.getElementById("quiter");
-quiter.addEventListener("click", function sortQuiz(){
+
+quiter.addEventListener("click", sortQuiz);
+function sortQuiz(){
     cardQuiz.style.display="none";
     heroStart.style.display= "flex";
-});
+}
 
-bntDebut.addEventListener("click", function commencerQuiz(){
+
+bntDebut.addEventListener("click", commencerQuiz);
+function commencerQuiz(){
     heroStart.style.display= "none";
     cardQuiz.style.display="flex";
-});
+}
 //  fin passser de commencer au cart de quiz
 
-function ajouterQuestion(){
+// function ajouterQuestion(){
+//     const questionCourant = ListQuestions[questionIndex];
+//     let questionNum = document.getElementById("questionNum");
+//     questionNum.innerText = questionIndex+1;
+//     questionCourant.reponces.forEach((reponce,index) => {
+//         // console.log(reponce.estCorrect);
+//         questionElm.innerText = questionCourant.question;
+//         btnReponses[index].innerText = reponce.texte;
+//         // console.log(btnReponses[index].dataset.estCorrect);
+//         btnReponses[index].dataset.estCorrect = reponce.estCorrect;
+//         console.log(index ,btnReponses[index].dataset.estCorrect);  
+//         btnReponses[index].classList.remove("correct", "incorrect");
+//         btnReponses[index].disabled = false;
+//         // btnReponses[index].addEventListener("click", selectedReponce);
+//         console.log(btnReponses[index]);
+//         btnReponses[index].onclick = selectedReponce;
+//     });
+// }
+
+// function selectedReponce (event){
+//     const selectBtn = event.target;
+//     const eCorrect = selectBtn.dataset.estCorrect= "true";
+//     if(eCorrect){
+//         selectBtn.classList.add("correct");
+//         console.log(selectBtn);
+//     }
+//     else{
+//         selectBtn.classList.add("incorrect");
+//         console.log(selectBtn);
+
+//     }
+//     Array.from(btnReponses.children).forEach(button => {
+//         if(button.dataset.estCorrect === "true"){
+//             button.classList.add("correct");
+//         }
+//         button.disabled = true
+//         });
+//         btnSuivant.style.display = "block";
+// }
+function ajouterQuestion() {
     const questionCourant = ListQuestions[questionIndex];
-    let questionNum = document.getElementById("questionNum");
+    questionElm.innerText = questionCourant.question;
     questionNum.innerText = questionIndex+1;
-    questionCourant.reponces.forEach((reponce,index) => {
-        // console.log(btnReponses[index].dataset.indexR);
-        // console.log(btnReponses[index].dataset.indexQ);
-        questionElm.innerText = questionCourant.question;
-        btnReponses[index].innerText = reponce.texte;
-        btnReponses[index].addEventListener("click", selectedReponce);
+
+    questionCourant.reponces.forEach((reponse, i) => {
+        const btn = btnReponses[i];
+        btn.innerText = reponse.texte;
+        btn.dataset.correct = reponse.estCorrect;
+        btn.classList.remove("correct", "incorrect");
+        btn.disabled = false;
+        btn.onclick = selectedReponce;
     });
 
-}
-btnSuivant.addEventListener("click", function(){
-    // console.log(ListQuestions.length);
+    }
+
+function selectedReponce(e) {
+    const clickedBtn = e.target;
+    const estCorrect = clickedBtn.dataset.correct === "true";
+
+    btnReponses.forEach(btn => {
+        if (btn.dataset.correct === "true") {
+        btn.classList.add("correct");
+        } else {
+        btn.classList.add("incorrect");
+        }
+        btn.disabled = true;
+    });
+
+    if (estCorrect) 
+        score++;
+    }
+
+btnSuivant.addEventListener("click", SuivantQuestion);
+function SuivantQuestion(){
     if(questionIndex+1 < ListQuestions.length){
         questionIndex++;
-        const precedentBtn = document.getElementById("precedentBtn");
         precedentBtn.style.visibility ="visible";
         ajouterQuestion();
     }
     else{
-        btnSuivant.innerText="Terminer";
+        btnSuivant.innerHTML="Terminer";
+        alert(`Quiz terminé ! Score : ${score}/${ListQuestions.length}`);
     }
-});
+}
 
-
-precedentBtn.addEventListener("click", function(){
-    if(questionIndex < ListQuestions.length){
-        questionIndex--;
-        ajouterQuestion();
+precedentBtn.addEventListener("click", precedentQuestion);
+function precedentQuestion(){
+    if(questionIndex >=1){
+        if(questionIndex < ListQuestions.length){
+            questionIndex--;
+            ajouterQuestion();
+        }
     }
-});
+    else{
+        precedentBtn.style.visibility ="hidden";
+    }
+}
+
 ajouterQuestion();
-
 
 
